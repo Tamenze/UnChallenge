@@ -1,0 +1,10 @@
+<h1>To Do New</h1>
+<%= form_for @task, url:task_path(@task), method: :patch do |f| %>
+<%= f.label :body %>
+<%= f.text_field :body %>
+<br>
+<%= f.label "Done?" %>
+<%= f.check_box :status %>
+<br>
+<%= f.submit "Submit" %>
+<% end %>

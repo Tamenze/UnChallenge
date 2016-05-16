@@ -1,0 +1,19 @@
+<h1>To Do List</h1>
+
+
+<ul>
+<% @tasks.each do |t| %>
+	<li> <%= t.body %> <span> <strong> 
+		<% if t.status %> 
+		   Done 
+		 <% else %> 
+		 Not Done
+		<% end %>
+	</strong> </span> </li> 
+	<p> Created: <%= t.created_at %> </p>
+	<p> <%= link_to "Show", task_path(t.id) %></p>
+	<p> <%= link_to "Edit", edit_task_path(t.id) %></p>
+	<br><br>
+<% end %>
+</ul>
+
