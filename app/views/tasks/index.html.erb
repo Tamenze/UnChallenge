@@ -1,19 +1,45 @@
 <h1>To Do List</h1>
 
 
-<ul>
+<ul id="tasks">
 <% @tasks.each do |t| %>
-	<li> <%= t.body %> <span> <strong> 
-		<% if t.status %> 
-		   Done 
-		 <% else %> 
-		 Not Done
-		<% end %>
-	</strong> </span> </li> 
-	<p> Created: <%= t.created_at %> </p>
-	<p> <%= link_to "Show", task_path(t.id) %></p>
-	<p> <%= link_to "Edit", edit_task_path(t.id) %></p>
-	<br><br>
+	<div id="<%= t.id %>">
+		<li> <%= t.body %> 
+			<span> 
+				<strong> 
+					<span id="status<%= t.id %>"> 
+						<% if t.status %> 
+						   Done 
+						 <% else %> 
+						 Not Done
+						<% end %>
+					</span> 
+				</strong>
+
+			<%= form_for t, url:task_path(t.id), method: :patch, remote: true do |f| %>
+			 <%= f.label "Done?" %>
+			<%= f.check_box :status %>
+			<br>
+			<%= f.submit "Submit" %>
+			<% end %>
+			</span> 
+		</li> 
+
+		<p> <%= t.created_at.strftime("Created at %I:%M%p on %m/%d/%Y") %> </p>
+		<p> <%= link_to "Edit", edit_task_path(t.id) %></p>
+		<p> <%= link_to "Delete", task_path(t.id), method: :delete, remote: true, data: {confirm: "You sure?"} %></p>
+		<br><br>
+	</div>
 <% end %>
 </ul>
 
+<hr>
+	<%= form_for(@task, remote: true, :format => :js) do |f| %>
+	<%= f.label :body %>
+	<%= f.text_field :body %>
+	<br>
+	<%= f.label "Done?" %>
+	<%= f.check_box :status %>
+	<br>
+	<%= f.submit "Submit" %>
+	<% end %>

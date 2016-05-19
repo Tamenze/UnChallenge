@@ -1,0 +1,26 @@
+
+<% if @task %>
+<div id="<%= @task.id %>">
+<li> <%= @task.body %> <span> 
+	<strong> 
+		<span id="status<%= @task.id %>"> 
+		<% if @task.status %> 
+		   Done 
+		 <% else %> 
+		 Not Done
+		<% end %>
+	</span>
+	</strong>
+		<%= form_for @task, url:task_path(@task.id), method: :patch, remote: true do |f| %>
+		 <%= f.label "Done?" %>
+		<%= f.check_box :status %>
+		<br>
+		<%= f.submit "Submit" %>
+		<% end %>
+	</span> </li> 
+	<p> <%= @task.created_at.strftime("Created at %I:%M%p on %m/%d/%Y") %> </p>
+	<p> <%= link_to "Edit", edit_task_path(@task.id) %></p>
+	<p> <%= link_to "Delete", task_path(@task.id), method: :delete, remote: true, data: {confirm: "You sure?"} %></p>
+	<br><br>
+</div>
+<% end %>
