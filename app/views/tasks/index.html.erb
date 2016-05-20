@@ -9,31 +9,35 @@
 				<strong> 
 					<span id="status<%= t.id %>"> 
 						<% if t.status %> 
-						   Done 
+						   <!-- DONE  -->
+						   &#10004;
 						 <% else %> 
-						 Not Done
+						 <!-- NOT DONE -->
+						  &#x2718;
 						<% end %>
 					</span> 
 				</strong>
-
+			</span> 
+		</li> 
+			<div class="indent">	
 			<%= form_for t, url:task_path(t.id), method: :patch, remote: true do |f| %>
 			 <%= f.label "Done?" %>
 			<%= f.check_box :status %>
-			<br>
 			<%= f.submit "Submit" %>
 			<% end %>
-			</span> 
-		</li> 
-
-		<p> <%= t.created_at.strftime("Created at %I:%M%p on %m/%d/%Y") %> </p>
-		<p> <%= link_to "Edit", edit_task_path(t.id) %></p>
-		<p> <%= link_to "Delete", task_path(t.id), method: :delete, remote: true, data: {confirm: "You sure?"} %></p>
+			
+	
+		<span> <%= t.created_at.strftime("Created at %I:%M%p on %m/%d/%Y") %> </spans>
+		<span> <%= link_to "Delete", task_path(t.id), method: :delete, remote: true, data: {confirm: "You sure?"} %></span>
+		</div>
 		<br><br>
 	</div>
 <% end %>
 </ul>
 
 <hr>
+<h1>Add New Task</h1>
+<div class="new_task">
 	<%= form_for(@task, remote: true, :format => :js) do |f| %>
 	<%= f.label :body %>
 	<%= f.text_field :body %>
@@ -43,3 +47,4 @@
 	<br>
 	<%= f.submit "Submit" %>
 	<% end %>
+</div>

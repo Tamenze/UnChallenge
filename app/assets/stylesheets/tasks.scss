@@ -5,5 +5,43 @@
 html,body{
 	margin: 0;
 	padding: 0;
-	background: light-blue
+	// background: #CF53AB;
+	background: #E94F37;
+	font-family: 'Roboto Slab', serif;
+
+
+}
+
+ul{
+	list-style-type: none;
+	border: 1px solid black;
+	border-radius: 5px;
+	width: 50%;
+	margin: 0 auto;
+	background: #44BBA4;
+	color: #3A3335;
+	& li:before{
+		content: "+";
+		// font-size: 2em
+	}
+	.indent{
+		margin-left: 1em
+	}
+}
+
+h1{
+	text-align: center;
+	font-weight: bolder;
+	font-size: 4em;
+	margin-bottom: .5em
+}
+.new_task{
+	// border: 1px solid black;
+	// padding-top: 10px;
+	border-radius: 5px;
+	width: 50%;
+	margin: 0 auto;
+	background: #FFEACC;
+	height: 130px
+
 }
